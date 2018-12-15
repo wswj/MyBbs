@@ -19,6 +19,8 @@ public interface AttentionMapper {
     Integer deleteAttention(int gid);
     //在个人界面删除关注信息
     Integer deleteByUseridAndBeuserid(Attention attention);
+    //删除该用户时删除该用户的关注信息
+    Integer deleteByUserid(int userid);
     long countByExample(AttentionExample example);
 
     int deleteByExample(AttentionExample example);

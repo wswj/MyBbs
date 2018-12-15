@@ -68,6 +68,13 @@
   <sql id="Base_Column_List">
     aid, aname, apassword, atime
   </sql>
+  <!--管理员登录验证-->
+  <select id="selectAdmin" parameterType="com.wj.pojo.Admin" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from admin
+    where aname=#{aname,jdbcType=VARCHAR} and apassword=#{apassword,jdbcType=VARCHAR}
+  </select>
   <select id="selectByExample" parameterType="com.wj.pojo.AdminExample" resultMap="BaseResultMap">
     select
     <if test="distinct">

@@ -92,11 +92,21 @@
     collect
     where sid=#{sid,jdbcType=INTEGER}
   </delete>
-  <!--删除关注信息-->
+  <!--删除收藏信息-->
   <delete id="deleteCollectByUseridAndFid" parameterType="com.wj.pojo.Collect">
     delete from
     collect
     where userid=#{userid,jdbcType=INTEGER} and fid=#{fid,jdbcType=INTEGER}
+  </delete>
+  <!--根据userid删除该用户关注的记录-->
+  <delete id="deleteByUserid" parameterType="java.lang.Integer">
+    delete from collect
+    where userid=#{userid,jdbcType=INTEGER} or fid=(select fid from user where userid=#{userid,jdbcType=INTEGER})
+  </delete>
+  <!--根据fid删除收藏信息-->
+  <delete id="deleteByFid">
+    delete from collect
+    where fid=#{fid,jdbcType=INTEGER}
   </delete>
   <select id="selectByExample" parameterType="com.wj.pojo.CollectExample" resultMap="BaseResultMap">
     select

@@ -30,6 +30,10 @@ public class Common {
     AttentionService attentionService;
     @Autowired
     CollectService collectService;
+    @Autowired
+    PlateController plateController;
+    @Autowired
+    UserController userController;
     @RequestMapping("/getAll")
     public String getAll(Map<Object,Object> map,Map<Object,Object> map2){
         articleController.getArticle(map);
@@ -68,6 +72,17 @@ public class Common {
         map.put("listArticle",articles);
        // map.put("listArticle",articles);
         return "list";
+    }
+    //查询输出管理员首页信息，包括用户信息，帖子信息，板块信息
+    @RequestMapping("/getAll_Admin")
+    public String getAdminAllInfo(Map<Object,Object> map){
+        //查询板块信息
+        plateController.getAllPlate(map);
+        //查询用户
+        userController.getAllUser(map);
+        //查询帖子
+        articleController.getArticle(map);
+        return "admin";
     }
 
 }

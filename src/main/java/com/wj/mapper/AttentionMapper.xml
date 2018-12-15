@@ -108,6 +108,12 @@
     attention
     where userid=#{userid,jdbcType=INTEGER} and beuserid=#{beuserid,jdbcType=INTEGER}
   </delete>
+  <!--根据userid删除关注信息-->
+  <delete id="deleteByUserid" parameterType="java.lang.Integer">
+    delete from
+    attention
+    where userid=#{userid,jdbcType=INTEGER} or beuserid=#{beuserid,jdbcType=INTEGER}
+  </delete>
   <select id="selectByExample" parameterType="com.wj.pojo.AttentionExample" resultMap="BaseResultMap">
     select
     <if test="distinct">

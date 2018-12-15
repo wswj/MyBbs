@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Service
 public class UserService implements Serializable {
@@ -35,4 +36,8 @@ public class UserService implements Serializable {
     public void updateUserzhiliao(User user){
         userMapper.updateUser(user);
     }
+    //无条件查询所有用户
+    public List<User> getAllUser(){return userMapper.selectUser();}
+    //删除用户
+    public void deleteUser(int userid){userMapper.deleteUser(userid);}
 }

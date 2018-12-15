@@ -17,6 +17,8 @@ public interface CommentMapper {
     Integer insertComment(Comment comment);
     //删除评论通过fid
     Integer deleteByPid(int pid);
+    //管理员删除用户时删除该用户的评论信息
+    Integer deleteByUserid(int userid);
     long countByExample(CommentExample example);
 
     int deleteByExample(CommentExample example);

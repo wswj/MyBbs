@@ -84,6 +84,12 @@
     set photo=#{photo,jdbcType=VARCHAR}
     where userid=#{userid,jdbcType=INTEGER}
   </update>
+  <!--根据userid删除用户头像-->
+  <delete id="deleteByUserid" parameterType="java.lang.Integer">
+    delete from
+    via
+    where userid=#{userid,jdbcType=INTEGER}
+  </delete>
   <select id="selectByExample" parameterType="com.wj.pojo.ViaExample" resultMap="BaseResultMap">
     select
     <if test="distinct">

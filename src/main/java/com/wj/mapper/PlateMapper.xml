@@ -73,6 +73,36 @@
     <include refid="Base_Column_List" />
     from plate
   </select>
+  <!--查询用户名是否存在-->
+  <select id="selectBnameExit" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from plate
+    where bname=#{bname,jdbcType=VARCHAR}
+  </select>
+    <!--按bid查询板块信息-->
+    <select id="selectByBid" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from plate
+        where bid=#{bid,jdbcType=INTEGER}
+    </select>
+  <!--新增板块-->
+  <insert id="insertPlate" parameterType="com.wj.pojo.Plate">
+    insert into plate (bname,btime)
+    values (#{bname,jdbcType=VARCHAR},#{btime,jdbcType=TIMESTAMP})
+  </insert>
+  <!--删除板块-->
+  <delete id="deletePlateByBid" parameterType="java.lang.Integer">
+    delete from plate
+    where bid=#{bid,jdbcType=INTEGER}
+  </delete>
+  <!--修改板块-->
+  <update id="updatePlate" parameterType="com.wj.pojo.Plate">
+    update plate
+    set bname=#{bname,jdbcType=VARCHAR}
+    where bid=#{bid,jdbcType=INTEGER}
+  </update>
   <select id="selectByExample" parameterType="com.wj.pojo.PlateExample" resultMap="BaseResultMap">
     select
     <if test="distinct">

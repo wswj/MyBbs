@@ -20,4 +20,5 @@ public class ViaService {
     public void setPhoto(Via via){
         viaMapper.updatePhotoByUserid(via);
     }
+    public void deleteVia(int userid){viaMapper.deleteByUserid(userid);}
 }

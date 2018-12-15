@@ -32,6 +32,8 @@ public class UserController {
     AttentionService attentionService;
     @Autowired
     CollectService collectService;
+    @Autowired
+    ViaService viaService;
     @ResponseBody
     @RequestMapping("/getLoginAjax")
     public String login(User user, Map<Object,Object> map, HttpServletRequest request){
@@ -231,6 +233,11 @@ public class UserController {
             return "others";
         }
     }
+    //无条件查询所有用户
+    public void getAllUser(Map<Object,Object> map){
+        List<User> listUser=userService.getAllUser();
+        map.put("listUser",listUser);
+    }
     //退出登录
     @RequestMapping("/userExit")
     public String userExit(Map<Object, Object> map) {
@@ -246,5 +253,16 @@ public class UserController {
 
 
         return new ModelAndView("redirect:/userController/getMyself.do");
+    }
+    //管理员删除用户
+    @RequestMapping("/deleteUser")
+    public String deleteUser(@RequestParam("userid")int userid){
+        collectService.deleteCollectByUserid(userid);
+        commentService.deleteComment(userid);
+        attentionService.deleteAttentionByUserid(userid);
+        viaService.deleteVia(userid);
+        articleService.deleteArticle(userid);
+        userService.deleteUser(userid);
+        return "redirect:/admin/index.jsp";
     }
 }

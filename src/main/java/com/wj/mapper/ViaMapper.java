@@ -13,6 +13,8 @@ public interface ViaMapper {
     Via selectByUserid(int userid);
     //根据userid更新用户头像
     Integer updatePhotoByUserid(Via via);
+    //根据userid删除用户头像信息
+    Integer deleteByUserid(int userid);
     long countByExample(ViaExample example);
 
     int deleteByExample(ViaExample example);

@@ -32,6 +32,7 @@ public class ArticleController {
     @RequestMapping("/setArticle")
     public String setArticle(HttpSession session, Article2 article2,
                              HttpServletRequest request, @RequestParam("photo") MultipartFile file){
+        System.out.println("提交的板块名为"+article2.getBname());
         String projectname;
         projectname=request.getSession().getServletContext().getRealPath("/");
         System.out.println("projectname1"+projectname);
@@ -101,5 +102,12 @@ public class ArticleController {
         map.put("article_Show",article);
         return "redirect:/content/articleShow.jsp";
     }
+    //修改帖子状态
+    @RequestMapping("/articleStatus")
+    public String updateStatus(Article article){
+        articleService.updateStatus(article);
+        return "redirect:/admin/index.jsp";
+    }
+
 
 }

@@ -123,6 +123,18 @@
     intro=#{intro,jdbcType=VARCHAR}
     where userid=#{userid,jdbcType=INTEGER}
   </update>
+  <!--无条件查询用户-->
+  <select id="selectUser" resultMap="BaseResultMap">
+    select
+    u.userid,u.name,u.age,u.sex,u.email,u.family,u.time,u.intro,v.photo userphoto
+    from user u left join via v on u.userid=v.userid
+  </select>
+  <!--删除用户-->
+  <delete id="deleteUser" parameterType="java.lang.Integer">
+    delete from
+    user
+    where userid=#{userid,jdbcType=INTEGER}
+  </delete>
   <select id="selectByExample" parameterType="com.wj.pojo.UserExample" resultMap="BaseResultMap">
     select
     <if test="distinct">

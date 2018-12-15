@@ -203,7 +203,7 @@
                                 <hr style="position: relative; margin-top: 2px;height:1px;border:none;border-top:1px dashed #dddddd;">
                                 <div class="row" style="position: relative; margin-top: -10px;">
                                     <div class="col-xs-9 col-md-11">
-                                        <a href="${APP_PATH}/userController/getOthers?userid=${myComment_list.userid }" class="a_p">
+                                        <a href="${APP_PATH}/userController/getOthers.do?userid=${myComment_list.userid }" class="a_p">
                                             <!-- 评论者姓名 -->
                                             <b>${myComment_list.name }</b>
                                         </a>
@@ -213,7 +213,7 @@
                                         <p>${myComment_list.pcontent }</p>
                                     </div>
                                     <div class="col-xs-3 col-md-1">
-                                        <form action="${APP_PATH }/commentController/deleteComment">
+                                        <form action="${APP_PATH }/commentController/deleteComment.do">
                                             <input type="hidden" name="pid" value="${myComment_list.pid }">
                                             <button type="submit" class="btn btn-danger btn-sm" onclick="return p_del();">删除</button>
                                         </form>

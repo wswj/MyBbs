@@ -2,10 +2,13 @@ package com.wj.mapper;
 
 import com.wj.pojo.Admin;
 import com.wj.pojo.AdminExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 public interface AdminMapper {
+    //通过管理员名和密码查询管理员
+    Admin selectAdmin(Admin admin);
     long countByExample(AdminExample example);
 
     int deleteByExample(AdminExample example);

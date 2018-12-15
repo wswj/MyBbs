@@ -13,6 +13,32 @@ public class PlateService {
     PlateMapper plateMapper;
     //查询板块信息
     public List<Plate> getAllPlate(){
+
         return plateMapper.selectAll();
+    }
+    //查询板块名是否存在
+    public Plate getPlate(String bname){
+
+        return plateMapper.selectBnameExit(bname);
+    }
+    //新建板块
+    public void setPlate(Plate plate){
+
+        plateMapper.insertPlate(plate);
+    }
+    //删除板块
+    public void deletePlate(int bid){
+
+        plateMapper.deletePlateByBid(bid);
+    }
+    //按bid查询板块
+    public Plate getPlateByBid(int bid){
+
+        return plateMapper.selectByBid(bid);
+    }
+    //修改板块
+    public void updatePlate(Plate plate){
+
+        plateMapper.updatePlate(plate);
     }
 }

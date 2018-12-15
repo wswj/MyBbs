@@ -200,7 +200,7 @@
                                         <hr style="position: relative; margin-top: 5px;">
                                         <div class="row" style="position: relative; margin-top: -10px;">
                                             <div class="col-md-12">
-                                                <a class="a_p" href="${APP_PATH}/userController/getOthers?userid=${comment_list.userid }">
+                                                <a class="a_p" href="${APP_PATH}/userController/getOthers.do?userid=${comment_list.userid }">
                                                     <!-- 评论者姓名 -->
                                                     <b>${comment_list.name}</b>
                                                 </a>
@@ -275,7 +275,7 @@
                 <c:if test="${listArticle.status==1 && listArticle.sum>1 }">
                     <div class="row">
                         <div class="col-md-12">
-                            <a href="${APP_PATH }/articleController/getArticleFid?fid=${listArticle.fid }">${listArticle.titles }</a>
+                            <a href="${APP_PATH }/articleController/getArticleFid.do?fid=${listArticle.fid }">${listArticle.titles }</a>
                         </div>
                         <div class="col-md-12">
                             <br>

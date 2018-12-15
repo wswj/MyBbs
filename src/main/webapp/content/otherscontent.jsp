@@ -125,7 +125,7 @@
                                     <hr style="position: relative; margin-top: 2px;height:1px;border:none;border-top:1px dashed #dddddd;">
                                     <div class="row" style="position: relative; margin-top: -10px;">
                                         <div class="col-md-11">
-                                            <a href="${APP_PATH}/userController/getOthers?userid=${othersComment_list.userid }" class="a_p">
+                                            <a href="${APP_PATH}/userController/getOthers.do?userid=${othersComment_list.userid }" class="a_p">
                                                 <!-- 评论者姓名 -->
                                                 <b>${othersComment_list.name }</b>
                                             </a>

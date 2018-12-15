@@ -104,6 +104,11 @@
     comment
     where pid=#{pid,jdbcType=INTEGER}
   </delete>
+  <delete id="deleteByUserid" parameterType="java.lang.Integer">
+    delete from
+    comment
+    where userid=#{userid,jdbcType=INTEGER}
+  </delete>
   <select id="selectByExample" parameterType="com.wj.pojo.CommentExample" resultMap="BaseResultMap">
     select
     <if test="distinct">

@@ -20,6 +20,10 @@ public interface UserMapper {
     User selectByUserId(int userid);
     //编辑个人资料
     int updateUser(User user);
+    //无条件查询所有用户
+    List<User> selectUser();
+    //删除用户
+    Integer deleteUser(int userid);
     int deleteByExample(UserExample example);
 
     int deleteByPrimaryKey(Integer userid);

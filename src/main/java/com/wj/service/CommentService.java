@@ -28,5 +28,7 @@ public class CommentService {
     public void deleteByPid(int pid){
         commentMapper.deleteByPid(pid);
     }
+    //删除用户时删除该用户的评论信息
+    public void deleteComment(int userid){commentMapper.deleteByUserid(userid);}
 
 }

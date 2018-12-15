@@ -157,6 +157,30 @@
 	group by a.fid
 	order by fid desc
   </select>
+  <!--根据userid删除帖子-->
+  <delete id="deleteByUserid" parameterType="java.lang.Integer">
+    delete from
+    article
+    where userid=#{userid,jdbcType=INTEGER}
+  </delete>
+  <!--修改帖子状态-->
+  <update id="updateStatus" parameterType="com.wj.pojo.Article">
+    update article
+    set status=#{status,jdbcType=INTEGER}
+    where fid=#{fid,jdbcType=INTEGER}
+  </update>
+  <!--修改帖子板块名-->
+  <update id="updateBname" parameterType="com.wj.pojo.Article">
+    update article
+    set bname=#{bname,jdbcType=VARCHAR}
+    where fid=#{fid,jdbcType=INTEGER}
+  </update>
+  <!--按板块名删除文章-->
+  <delete id="deleteByBname" parameterType="java.lang.String">
+    delete from
+    article
+    where bname=#{bname,jdbcType=VARCHAR}
+  </delete>
   <select id="selectByExample" parameterType="com.wj.pojo.ArticleExample" resultMap="BaseResultMap">
     select
     <if test="distinct">

@@ -20,6 +20,10 @@ public interface CollectMapper {
     Integer deleteCollectBySid(int sid);
     //删除关注信息通过userid和fid
     Integer deleteCollectByUseridAndFid(Collect collect);
+    //删除该用户时，删除收藏信息
+    Integer deleteByUserid(int userid);
+    //根据fid删除收藏信息
+    Integer deleteByFid(int fid);
     int deleteByPrimaryKey(Integer sid);
 
     int insert(Collect record);
