@@ -2,6 +2,7 @@ package com.wj.controller;
 
 import com.wj.pojo.*;
 import com.wj.service.*;
+import com.wj.utils.AddCookie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Date;
@@ -34,13 +36,44 @@ public class UserController {
     CollectService collectService;
     @Autowired
     ViaService viaService;
+
     @ResponseBody
     @RequestMapping("/getLoginAjax")
-    public String login(User user, Map<Object,Object> map, HttpServletRequest request){
-        user.setName(request.getParameter("name"));
-        user.setPassword(request.getParameter("password"));
+    public String login(User user, Map<Object,Object> map, HttpServletRequest request, HttpServletResponse response){
+        String username=request.getParameter("name");
+        String userpassword=request.getParameter("password");
+        user.setName(username);
+        user.setPassword(userpassword);
+        String rememberFlag=request.getParameter("rememberyesorno");
+        System.out.println("接受到的值为"+rememberFlag);
+        //判断是否保存登录信息
+        //Cookie loginCookie= null;
+        if("1".equals(rememberFlag)){
+//            Cookie[] cookies=request.getCookies();
+//            for(int i=0;i<cookies.length;i++){
+//                Cookie cookie=cookies[i];
+//                if ("loginInfo".equals(cookie.getName())){
+//                    System.out.println("cook");
+//                }
+//            }
+            String loginInfo=(username+","+userpassword);
+            System.out.println(loginInfo);
+            System.out.println(loginInfo);
+
+//            try {
+//                loginCookie = new Cookie("loginInfo", URLEncoder.encode(loginInfo,"UTF-8"));
+//            } catch (UnsupportedEncodingException e) {
+//                System.out.println("中文转码异常");
+//            }
+//            loginCookie.setPath("/");
+//            loginCookie.setMaxAge(60*60*24);
+            AddCookie addCookie=new AddCookie();
+            addCookie.addCookie(loginInfo,response);
+            System.out.println("结束");
+        }
+        System.out.println("出来了");
         User user1=userService.getUser(user);
-        System.out.println("名字她她她她她她她她她她她她她她她她她她"+user1.getName());
+        System.out.println("登录用户的名字为"+user1.getName());
         if(user1.getName()!=null){
             System.out.println("内部");
             int userid=user1.getUserid();
@@ -51,7 +84,9 @@ public class UserController {
             map.put("username",name);
             map.put("email",email);
             map.put("password",password);
+            //response.addCookie(loginCookie);
             return "OK";
+
         }else {
             return "NO";
         }

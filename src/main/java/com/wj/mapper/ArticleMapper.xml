@@ -144,7 +144,7 @@
     a.fid, a.titles, a.fcontent, a.photo, a.bname, a.time, a.userid, a.username, a.status,count(c.pid) sum,v.photo userphoto
     from article a left join comment c on a.fid=c.fid left join via v on a.userid=v.userid
 	group by a.fid
-	order by c.time desc
+
   </select>
   <!--根据搜索条件查询帖子-->
   <select id="selectArticleBySearch" parameterType="com.wj.pojo.Article" resultMap="BaseResultMap">

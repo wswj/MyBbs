@@ -41,6 +41,7 @@
                 <div class="col-xs-6 col-md-6">
                     <img src="${APP_PATH }/static/img/login.png"
                          style="position: relative; width: 100%; height: 280px">
+
                 </div>
                 <div class="col-xs-6 col-md-6">
                     <div class="modal-header">
@@ -66,6 +67,7 @@
                                 还没有账号？ <a href="#" data-toggle="modal"
                                           data-target="#SignUpModal" data-dismiss="modal"
                                           aria-label="Close" class="text-success">立即注册</a>
+                                <input type="radio"id="rememberyesorno" onclick="rememberme();">记住密码
                             </p>
                             <div class="form-group">
                                 <div class="row" style="position: relative; top: 10px;">
@@ -155,6 +157,36 @@
 </div>
 
 <script>
+    //判断是否保存密码，若保存则将rememberyesorno值赋值为1
+    function rememberme() {
+        var rememberyesorno=$("input[type='radio']").is(':checked');
+           if(rememberyesorno==true){
+            var conf=confirm("是否确定记住密码");
+            alert(conf);
+            if(conf){
+                return $("#rememberyesorno").val("1");
+                alert($("#rememberyesorno").val());
+            }else {
+                $("input[type='radio']").prop('checked',false);
+                $("#rememberyesorno").val("");
+            }
+        }else {
+               $("#rememberyesorno").val("");
+
+        }
+    }
+    //从cookie中获得登录信息并填充到表单中
+   window.onload=function () {
+        alert("加载开始");
+        var str=decodeURIComponent(document.cookie).split("=")[1];
+        var username=str.split(",")[0];
+        var password=str.split(",")[1];
+        alert(username);
+        alert(password);
+        $("#name").val(username);
+        $("#password").val(password);
+        alert(str);
+   }
     //页面的跳转
     function go(){
         window.location.href="${APP_PATH}/index.jsp";
@@ -164,11 +196,12 @@
         //获取用户名和密码
         var name = $("#name").val();//输入的用户名
         var password = $("#password").val();//输入的密码
-
+        var rememberyesorno=$("#rememberyesorno").val();
+        alert(rememberyesorno);
         //调ajax
         $.ajax({
             url:"${APP_PATH}/userController/getLoginAjax.do",
-            data:{name:name,password:password},
+            data:{name:name,password:password,rememberyesorno:rememberyesorno},
             type:"POST",
             dataType:"text",
             success: function(data){

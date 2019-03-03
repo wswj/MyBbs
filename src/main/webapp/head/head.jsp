@@ -45,7 +45,7 @@
                             <span class="icon-bar"></span>
                         </button>
                         <a class="navbar-brand" href="${APP_PATH}/index.jsp">
-                            <img class="img_logo" alt="Brand" src=""/>
+                            <img class="img_logo" alt="Brand" src="${APP_PATH}/static/img/logo.png"/>
                         </a>
                     </div>
                     <div class="collapse navbar-collapse"
@@ -68,7 +68,7 @@
                         <ul class="nav navbar-nav navbar-right">
                             <c:if test="${empty username}">
                                 <li>
-                                    <a href="#" data-toggle="modal" data-target="#loginModal">登录</a>
+                                    <a href="#" data-toggle="modal" data-target="#loginModal" onclick="">登录</a>
                                 </li>
                             </c:if>
                             <c:if test="${!empty username}">
